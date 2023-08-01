@@ -12,9 +12,12 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import ScheduleList from './pages/ScheduleList/ScheduleList'
 
 // services
 import * as authService from './services/authService'
+import * as scheduleService from './services/scheduleService'
+import { useState, useEffect } from 'react'
 
 // styles
 import './App.css'
@@ -32,6 +35,19 @@ function App() {
   const handleAuthEvt = () => {
     setUser(authService.getUser())
   }
+  
+  const [schedules, setSchedules] = useState([])
+
+  useEffect(() => {
+    const fetchAllSchedules = async () => {
+      const data = await scheduleService.getAll()
+      console.log('Schedule Data', data)
+      setSchedules(data)
+    }
+    if (user) fetchAllSchedules()
+  }, [user])
+
+
 
   return (
     <>
@@ -59,6 +75,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schedules"
+          element={
+            <ProtectedRoute user={user}>
+              <ScheduleList schedules = {schedules}/>
             </ProtectedRoute>
           }
         />
