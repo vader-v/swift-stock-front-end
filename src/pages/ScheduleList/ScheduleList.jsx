@@ -1,12 +1,12 @@
 // css
 import styles from './ScheduleList.module.css'
 
-const BlogList = () => {
+const ScheduleList = () => {
   return (
     <main className={styles.container}>
-      Blog List
+      Schedule List
     </main>
   )
 }
 
-export default BlogList
+export default ScheduleList
