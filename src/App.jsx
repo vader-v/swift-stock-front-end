@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
@@ -17,7 +17,6 @@ import ScheduleList from './pages/ScheduleList/ScheduleList'
 // services
 import * as authService from './services/authService'
 import * as scheduleService from './services/scheduleService'
-import { useState, useEffect } from 'react'
 
 // styles
 import './App.css'
