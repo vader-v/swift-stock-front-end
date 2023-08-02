@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const fetchAllSchedules = async () => {
-      const data = await scheduleService.getAll()
+      const data = await scheduleService.index()
       console.log('Schedule Data', data)
       setSchedules(data)
     }

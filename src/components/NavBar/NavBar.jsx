@@ -1,9 +1,13 @@
 // npm modules
 import { NavLink } from 'react-router-dom'
+import styles from './NavBar.module.css'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
     <nav>
+      <NavLink to="/">
+        <img src="favicon.png" alt="swift stock logo" className={styles.logo} />
+      </NavLink>
       {user ?
         <ul>
           <li>Welcome, {user.name}</li>
@@ -13,7 +17,7 @@ const NavBar = ({ user, handleLogout }) => {
           <li><NavLink to="/schedules">SCHEDULES</NavLink></li>
         </ul>
       :
-        <ul>
+      <ul>
           <li><NavLink to="/auth/login">Log In</NavLink></li>
           <li><NavLink to="/auth/signup">Sign Up</NavLink></li>
         </ul>

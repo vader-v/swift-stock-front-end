@@ -1,0 +1,50 @@
+nav {
+  /* Set a specific height for the navigation bar */
+  height: 60px; /* Adjust the height as per your design */
+  background-color: #f0f0f0; /* Example background color for the nav bar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo {
+  /* Set the maximum height and width for the logo image */
+  max-height: 50px; /* Adjust the max height as per your design */
+  max-width: 150px; /* Adjust the max width as per your design */
+  display: block; /* This makes sure the link area covers the whole image */
+}
+
+.logo img {
+  /* If the image is larger than the maximum size, it will be scaled down */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This ensures that the image fits within the container */
+}
+
+ul {
+  display: flex; /* Use flexbox to make the list items align in a row */
+  list-style: none; /* Remove default list styles */
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+
+ul li {
+  margin-right: 10px; /* Add some spacing between the navigation items */
+}
+
+ul li:last-child {
+  margin-right: 0; /* Remove margin from the last navigation item */
+}
+
+/* Style for unclicked links */
+ul li a {
+  color: black; /* Set the default link color to black */
+  text-decoration: none; /* Remove underline text decoration */
+}
+
+/* Style for the dark mustard yellow on hover (unclicked state) */
+ul li a:hover {
+  color: darkgoldenrod; /* Change link color on hover */
+}
