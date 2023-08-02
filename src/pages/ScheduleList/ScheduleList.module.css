@@ -3,23 +3,31 @@
   width: 100%;
   display: grid;
   padding: 21px;
+  background-color: white;
+}
+
+ul.scheduleGrid { /* Use the class name to target the specific ul element */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
   grid-template-columns: repeat(1, 1fr);
 }
 
 @media only screen and (min-width: 900px) {
-  .container {
+  ul.scheduleGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .container {
+  ul.scheduleGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media only screen and (min-width: 1500px) {
-  .container {
+  ul.scheduleGrid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
