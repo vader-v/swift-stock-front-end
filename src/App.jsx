@@ -37,6 +37,7 @@ function App() {
   }
   
   const [schedules, setSchedules] = useState([])
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     const fetchAllSchedules = async () => {
@@ -75,6 +76,18 @@ function App() {
       console.error('Error creating schedule:', error);
     }
   };
+
+  const updateScheduleList = async () => {
+    try {
+      const data = await scheduleService.index()
+      console.log('Schedule Data', data)
+      setSchedules(data)
+      setFormSubmitted(true)
+      navigate('/schedules');
+    } catch (error) {
+      console.error('Error fetching schedules:', error)
+    }
+  }
 
   return (
     <>
@@ -117,7 +130,7 @@ function App() {
           path="/schedules/schedule-form"
           element={
             <ProtectedRoute user={user}>
-              <ScheduleForm onScheduleSubmit={handleScheduleSubmit} />
+              <ScheduleForm onScheduleSubmit={handleScheduleSubmit} updateScheduleList={updateScheduleList} />
             </ProtectedRoute>
           }
         />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ScheduleForm({ onScheduleSubmit }) {
+function ScheduleForm({ onScheduleSubmit, updateScheduleList }) {
   const [startDate, setStartDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -29,13 +29,12 @@ function ScheduleForm({ onScheduleSubmit }) {
     try {
       const newSchedule = await onScheduleSubmit(data); // Call the onScheduleSubmit function to send the POST request
       console.log('New schedule Submitted:', newSchedule);
-      // Add any additional logic you need here, like redirecting the user or updating the UI
+      updateScheduleList();
     } catch (error) {
       console.error('Error creating schedule:', error);
       // Handle errors here, e.g., show an error message to the user
     }
   };
-
 
   const handleChangeLabel = (index, field, value) => {
     const updatedOrderReceipts = [...orderReceipts];
@@ -49,7 +48,7 @@ function ScheduleForm({ onScheduleSubmit }) {
         Start Date:
         <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         Start Time:
-        <input type='time' value={startTime} onChange={(e) => setStartTime(e.target.value)}/>
+        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
       </label>
       <br />
       <label>
@@ -57,7 +56,6 @@ function ScheduleForm({ onScheduleSubmit }) {
         <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         End Time:
         <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
-      
       </label>
       <br />
       <label>
