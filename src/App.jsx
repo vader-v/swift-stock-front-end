@@ -37,7 +37,6 @@ function App() {
   }
   
   const [schedules, setSchedules] = useState([])
-  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     const fetchAllSchedules = async () => {
@@ -82,7 +81,6 @@ function App() {
       const data = await scheduleService.index()
       console.log('Schedule Data', data)
       setSchedules(data)
-      setFormSubmitted(true)
       navigate('/schedules');
     } catch (error) {
       console.error('Error fetching schedules:', error)
