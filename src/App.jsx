@@ -13,6 +13,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import ScheduleList from './pages/ScheduleList/ScheduleList'
+import ScheduleForm from './pages/ScheduleForm/ScheduleForm'
 
 // services
 import * as authService from './services/authService'
@@ -46,7 +47,34 @@ function App() {
     if (user) fetchAllSchedules()
   }, [user])
 
+  const fetchSchedules = async () => {
+    try {
+      const response = await fetch('/api/schedules'); // Use the base URL for fetching schedules
+      if (!response.ok) {
+        // Handle error response, e.g., display an error message
+        throw new Error('Error fetching schedules: Network response was not ok');
+      }
+      const data = await response.json();
+      setSchedules(data);
+    } catch (error) {
+      console.log(error);
+      // Handle error, e.g., set state to indicate loading failed
+    }
+  };
 
+  useEffect(() => {
+    fetchSchedules();
+  }, []);
+
+  const handleScheduleSubmit = async (newSchedule) => {
+    try {
+      const createdSchedule = await scheduleService.create(newSchedule);
+      console.log('New Schedule Created:', createdSchedule);
+      fetchSchedules();
+    } catch (error) {
+      console.error('Error creating schedule:', error);
+    }
+  };
 
   return (
     <>
@@ -82,6 +110,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <ScheduleList schedules = {schedules}/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schedules/schedule-form"
+          element={
+            <ProtectedRoute user={user}>
+              <ScheduleForm onScheduleSubmit={handleScheduleSubmit} />
             </ProtectedRoute>
           }
         />

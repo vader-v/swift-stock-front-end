@@ -8,10 +8,31 @@ async function index() {
     const res = await fetch(BASE_URL, {
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
     })
-    return res.json()
+    const data = await res.json();
+    console.log('Schedule Data:', data); // Add this line
+    return data;
   } catch (error) {
     console.log(error)
   }
 }
 
-export { index }
+async function create(triviaFormData) {
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: { 
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(triviaFormData)
+    })
+    return res.json()
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export { 
+  index,
+  create,
+}
