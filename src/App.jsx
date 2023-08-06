@@ -40,16 +40,22 @@ function App() {
 
   useEffect(() => {
     const fetchAllSchedules = async () => {
-      const data = await scheduleService.index()
-      console.log('Schedule Data', data)
-      setSchedules(data)
+      try {
+        const data = await scheduleService.index();
+        setSchedules(data);
+      } catch (error) {
+        console.error('Error fetching schedules:', error);
+      }
+    };
+
+    if (user) {
+      fetchAllSchedules();
     }
-    if (user) fetchAllSchedules()
-  }, [user])
+  }, [user]);
 
   const fetchSchedules = async () => {
     try {
-      const response = await fetch('/api/schedules'); // Use the base URL for fetching schedules
+      const response = await fetch('/api/schedules');
       if (!response.ok) {
         // Handle error response, e.g., display an error message
         throw new Error('Error fetching schedules: Network response was not ok');
@@ -70,7 +76,7 @@ function App() {
     try {
       const createdSchedule = await scheduleService.create(newSchedule);
       console.log('New Schedule Created:', createdSchedule);
-      fetchSchedules();
+      updateScheduleList();
     } catch (error) {
       console.error('Error creating schedule:', error);
     }

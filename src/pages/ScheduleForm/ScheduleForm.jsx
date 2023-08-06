@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as styles from './ScheduleForm.module.css';
 
 function ScheduleForm({ onScheduleSubmit, updateScheduleList }) {
   const [startDate, setStartDate] = useState('');
@@ -35,56 +36,79 @@ function ScheduleForm({ onScheduleSubmit, updateScheduleList }) {
       // Handle errors here, e.g., show an error message to the user
     }
   };
-
+  
   const handleChangeLabel = (index, field, value) => {
     const updatedOrderReceipts = [...orderReceipts];
     updatedOrderReceipts[index][field] = value;
     setOrderReceipts(updatedOrderReceipts);
   };
-
+  
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className={styles.form}>
+
+      <div className={styles.inputGroup}>
+      <label htmlFor='startDate'>
         Start Date:
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+      </label>
+        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className={styles.input} required/>
+      </div>
+
+      <div className={styles.inputGroup}>
+      <label htmlFor="startTime">
         Start Time:
-        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
       </label>
-      <br />
-      <label>
+        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} required/>
+      </div>
+
+      <div className={styles.inputGroup}>
+      <label htmlFor="endDate">
         End Date:
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        End Time:
-        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
-      <br />
+        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required/>
+      </div>
+
+      <div className={styles.inputGroup}>
+      <label htmlFor="endTime">
+        End Time:
+        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} required/>
+      </label>
+      </div>
+
+      <div className={styles.orderReceipts}>
+
       <label>
         Order Receipts:
+        </label>
         {orderReceipts.map((receipt, index) => (
-          <div key={index}>
+          <div key={index} className={styles.inputGroup}>
             <input
               type="text"
               placeholder="Label"
               value={receipt.label}
               onChange={(e) => handleChangeLabel(index, 'label', e.target.value)}
-            />
+              className={styles.input}
+              required
+              />
             <input
               type="text"
               placeholder="Value"
               value={receipt.value}
               onChange={(e) => handleChangeLabel(index, 'value', e.target.value)}
-            />
-            <button type="button" onClick={() => handleRemoveLabel(index)}>
+              className={styles.input}
+              required
+              />
+            <button type="button" onClick={() => handleRemoveLabel(index)} className={styles.removeLabelBtn}>
               Remove Label
             </button>
           </div>
         ))}
-        <button type="button" onClick={handleAddLabel}>
+        <button type="button" onClick={handleAddLabel} className={styles.addLabelBtn}>
           Add Label
         </button>
-      </label>
+
+      </div>
       <br />
-      <button type="submit">Submit</button>
+      <button type="submit" className={styles.submitBtn}>Submit</button>
     </form>
   );
 }

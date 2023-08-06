@@ -9,7 +9,6 @@ async function index() {
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
     })
     const data = await res.json();
-    console.log('Schedule Data:', data); // Add this line
     return data;
   } catch (error) {
     console.log(error)

@@ -1,0 +1,55 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-basis: 50%;
+  color: black;
+}
+
+.input {
+  padding: 5px;
+}
+
+.orderReceipts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-basis: 100%;
+  color: black;
+}
+
+.removeLabelBtn {
+  background-color: #ff6961;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.addLabelBtn {
+  background-color: #90ee90;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.submitBtn {
+  background-color: #4169e1;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
