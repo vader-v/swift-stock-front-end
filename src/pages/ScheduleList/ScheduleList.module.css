@@ -1,12 +1,15 @@
+/* Add borders to the outer container and inner li elements */
 .container {
   gap: 14px;
   width: 100%;
+  max-width: calc(100vw - 64px);
   display: grid;
   padding: 21px;
   background-color: white;
+  border: 1px solid #000000; /* Add a border to the outer container */
 }
 
-ul.scheduleGrid { /* Use the class name to target the specific ul element */
+ul.scheduleGrid {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -30,4 +33,9 @@ ul.scheduleGrid { /* Use the class name to target the specific ul element */
   ul.scheduleGrid {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+ul.scheduleGrid li {
+  border: 1px solid #000000; /* Add a border to each li element */
+  padding: 10px; /* Add some padding to create a spacing between the border and content */
 }

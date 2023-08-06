@@ -12,9 +12,9 @@ function ScheduleList({ schedules }) {
 
   return (
     <div className={styles.container}>
-        <ul>
+        <ul className={styles.scheduleGrid}>
           {schedules.map((schedule) => (
-            <li key={schedule._id}>
+            <li key={schedule._id} className={styles.scheduleListElements}>
               <p>Start Date: {schedule.startDate}</p>
               <p>End Date: {schedule.endDate}</p>
               <p>Order Receipts:</p>
